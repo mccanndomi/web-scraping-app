@@ -1,38 +1,30 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import { StyleSheet } from 'react-native';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Feed from "./pages/Feed";
+import Thread from "./pages/Thread";
 
-const App = () => {
+const Stack = createStackNavigator();
+
+export default function App() {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-          <View style={styles.body}>
-            <Text>Hello World</Text>
-          </View>
-      </SafeAreaView>
-    </>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Feed" component={ Feed } />
+        <Stack.Screen name="Thread" component={ Thread } />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  body: {
-    backgroundColor: "#ffffff",
-  }
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
-
-export default App;
