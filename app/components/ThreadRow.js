@@ -27,7 +27,7 @@ function ThreadRow({item, onPress}) {
             <MaterialCommunityIcons name="comment" size={18} color="#949494" />
             <Text style={styles.bottomText}>{item.comments}</Text>
             <MaterialCommunityIcons name="calendar-blank" size={18} color="#949494" />
-            <Text style={styles.bottomText}>{item.date.replaceAll(',','')}</Text>
+            <Text style={styles.bottomText}>{item.date}</Text>
           </View>
         </View>
       </TouchableOpacity>

@@ -1,9 +1,7 @@
-import React from "react";
-import { Alert } from "react-native";
 import * as firebase from "firebase";
 import "firebase/database";
 
-// Initialize Firebase
+// initialize Firebase
 var firebaseConfig = {
     apiKey: "AIzaSyBjllX7M_p3lwZlTbrnz0HUtNQiWg_v_sc",
     authDomain: "web-scraping-api.firebaseapp.com",
@@ -14,27 +12,9 @@ var firebaseConfig = {
     appId: "1:562655786141:web:da6c23efde05ab23629074"
 };
 
-firebase.initializeApp(firebaseConfig);
-export const db = firebase.database();
-
-async function getAllPosts() {
-  //fetches all posts from db
-  return await firebase
-    .database()
-    .ref("posts/")
-    .on(
-      "value",
-      function (snapshot) {
-        let data = snapshot.val();
-        if (data != null) {
-          console.log(data);
-          return data;
-        }
-      },
-      function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
-      }
-    );
+if (firebase.apps.length === 0) {
+  firebase.initializeApp(firebaseConfig);
 }
 
-export { getAllPosts };
+//firebase.initializeApp(firebaseConfig);
+export { firebase };
