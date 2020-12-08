@@ -17,7 +17,7 @@ export default function GameStats({ route, navigation }) {
           <View style={styles.topArea}>
             <Avatar avatarName={thread.user} size={34}></Avatar>
             <Text style={styles.userText}>Posted by {thread.user}</Text>
-            <Text style={styles.idText}> - {thread.id /*REMOVE ME*/}</Text>
+            <Text style={styles.timeText}>- {thread.time}</Text>
           </View>
           <View style={styles.middleArea}>
             <Text style={styles.titleText}>{thread.title}</Text>
@@ -66,6 +66,13 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         paddingBottom: 10,
         paddingLeft: 10,
+      },
+      timeText: {
+        color: '#949494',
+        fontStyle: "italic",
+        fontSize: 14,
+        paddingTop: 10,
+        paddingBottom: 10,
       },
       bottomText: {
         color: '#949494',
