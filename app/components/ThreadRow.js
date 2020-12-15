@@ -21,7 +21,9 @@ function ThreadRow({ item, onPress }) {
       >
         <View style={styles.topArea}>
           <Avatar avatarName={item.user} size={26}></Avatar>
-          <Text style={styles.userText}>Posted by {item.user}</Text>
+          <Text style={styles.userText}>
+            Posted by {item.user} - {item.time}
+          </Text>
         </View>
         <View style={styles.middleArea}>
           <Text style={[styles.middleText, { color: colors.text }]}>
