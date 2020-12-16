@@ -84,7 +84,7 @@ const Comment = (props) => {
         {comment.hasOwnProperty("childIDs") && comment.childIDs.length != 0 ? (
           isHidden ? (
             comment.childIDs.map((id) => (
-              <Comment commentId={id} m indentSize={indentSize + 1} />
+              <Comment commentId={id} key={id} indentSize={indentSize + 1} />
             ))
           ) : (
             <View style={styles.hiddenView}></View>

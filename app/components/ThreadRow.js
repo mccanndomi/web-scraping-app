@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { Avatar } from "./Avatar";
-import { LinkPreview } from "./LinkPreview";
+import { SmallLinkPreview } from "./SmallLinkPreview";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "@react-navigation/native";
@@ -30,6 +30,7 @@ function ThreadRow({ item, onPress }) {
           <Text style={[styles.middleText, { color: colors.text }]}>
             {item.title}
           </Text>
+          <SmallLinkPreview url="https://www.bbc.com/sport/football/55321152" />
         </View>
         <View style={styles.bottomArea}>
           <MaterialCommunityIcons name="comment" size={18} color="#949494" />
@@ -57,6 +58,7 @@ const styles = StyleSheet.create({
   },
   middleText: {
     fontWeight: "600",
+    flex: 1,
     fontSize: 24,
     padding: 10,
   },
@@ -71,9 +73,9 @@ const styles = StyleSheet.create({
   bottomText: {
     color: "#949494", //THEME CHANGES
     fontWeight: "600",
+    textAlign: "center",
+    textAlignVertical: "center",
     fontSize: 15,
-    paddingTop: 10,
-    paddingBottom: 10,
     paddingLeft: 5,
     paddingRight: 25,
   },
@@ -85,12 +87,14 @@ const styles = StyleSheet.create({
   },
   middleArea: {
     flex: 1,
+    flexDirection: "row",
   },
   bottomArea: {
     flex: 1,
     flexDirection: "row",
     paddingLeft: 10,
     alignItems: "center",
+    paddingBottom: 6,
   },
 });
 

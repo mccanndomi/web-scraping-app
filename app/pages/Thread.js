@@ -15,7 +15,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
 import { firebase } from "../services/Firebase";
 import { useTheme } from "@react-navigation/native";
-import Swipeable from "react-native-gesture-handler/Swipeable";
 
 export default function Thread({ route, navigation }) {
   const { colors } = useTheme();
@@ -107,7 +106,7 @@ export default function Thread({ route, navigation }) {
         </View>
         <View style={styles.threadComments}>
           {thread.childIDs.map((id) => (
-            <Comment commentId={id} indentSize={0} />
+            <Comment commentId={id} key={id} indentSize={0} />
           ))}
         </View>
       </ScrollView>
