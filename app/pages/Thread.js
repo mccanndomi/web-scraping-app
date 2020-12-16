@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { Avatar } from "../components/Avatar";
 import { Comment } from "../components/Comment";
+import { LinkPreview } from "../components/LinkPreview";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
 import { firebase } from "../services/Firebase";
@@ -91,6 +92,7 @@ export default function Thread({ route, navigation }) {
             >
               {thread.description.replace(/(\r\n|\n|\r)/gm, " ")}
             </Text>
+            <LinkPreview url="https://www.bbc.com/sport/football/55321152" />
           </View>
           <View style={styles.bottomArea}>
             <MaterialCommunityIcons name="comment" size={18} color="#949494" />
