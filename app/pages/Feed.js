@@ -54,7 +54,15 @@ function Feed({ navigation }) {
         function (snapshot) {
           let data = snapshot.val();
           if (data != null) {
-            setPosts(Object.values(data));
+            setFilterSelected("Recent");
+            setPosts(
+              Object.values(data).sort((a, b) =>
+                new Date(a.date + " " + a.time).getTime() <
+                new Date(b.date + " " + b.time).getTime()
+                  ? 1
+                  : -1
+              )
+            );
           }
         },
         function (errorObject) {
@@ -113,6 +121,15 @@ function Feed({ navigation }) {
                 isSelected={filterSelected == "Most Comments" ? true : false}
               />
             </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => handleFilterChange("Contains Link", posts)}
+            >
+              <FilterButton
+                title="Contains Link"
+                icon="link-box"
+                isSelected={filterSelected == "Contains Link" ? true : false}
+              />
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -165,13 +182,17 @@ function Feed({ navigation }) {
           currentPosts.sort((a, b) => (a.comments < b.comments ? 1 : -1))
         );
         break;
+      case "Contains Link":
+        setFilterSelected("Contains Link");
+        setPosts(currentPosts.sort((a, b) => (a.link > b.link ? 1 : -1)));
+        break;
     }
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    paddingTop: Platform.OS !== "android" ? StatusBar.currentHeight : 0,
     flex: 1,
   },
   headerIcon: {

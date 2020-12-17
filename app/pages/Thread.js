@@ -91,8 +91,8 @@ export default function Thread({ route, navigation }) {
             >
               {thread.description.replace(/(\r\n|\n|\r)/gm, " ")}
             </Text>
-            {thread.title == "Not only did we score but" ? (
-              <LinkPreview url="https://www.bbc.com/sport/football/55321152" />
+            {thread.hasOwnProperty("link") ? (
+              <LinkPreview url={thread.link} />
             ) : null}
           </View>
           <View style={styles.bottomArea}>
@@ -107,9 +107,11 @@ export default function Thread({ route, navigation }) {
           </View>
         </View>
         <View style={styles.threadComments}>
-          {thread.childIDs.map((id) => (
-            <Comment commentId={id} key={id} indentSize={0} />
-          ))}
+          {thread.hasOwnProperty("childIDs")
+            ? thread.childIDs.map((id) => (
+                <Comment commentId={id} key={id} indentSize={0} />
+              ))
+            : null}
         </View>
       </ScrollView>
     </View>

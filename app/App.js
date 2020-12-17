@@ -71,6 +71,7 @@ export default function App() {
             name="Feed"
             component={Feed}
             options={{
+              headerTitleAlign: "center",
               headerTitle: (props) => <LogoTitle color={theme.colors.text} />,
               headerLeft: () => (
                 <TouchableOpacity

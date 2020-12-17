@@ -30,8 +30,8 @@ function ThreadRow({ item, onPress }) {
           <Text style={[styles.middleText, { color: colors.text }]}>
             {item.title}
           </Text>
-          {item.title == "Not only did we score but" ? (
-            <SmallLinkPreview url="https://www.bbc.com/sport/football/55321152" />
+          {item.hasOwnProperty("link") ? (
+            <SmallLinkPreview url={item.link} />
           ) : null}
         </View>
         <View style={styles.bottomArea}>
@@ -59,9 +59,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   middleText: {
-    fontWeight: "600",
+    fontWeight: "bold",
     flex: 1,
-    fontSize: 24,
+    fontSize: 22,
     padding: 10,
   },
   userText: {

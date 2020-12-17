@@ -13,6 +13,7 @@ import * as Linking from "expo-linking";
 
 const LinkPreview = (props) => {
   const { dark, colors } = useTheme();
+  const [hasLoaded, setHadLoaded] = useState(false);
   const [linkData, setLinkData] = useState({});
 
   useEffect(() => {
@@ -20,7 +21,9 @@ const LinkPreview = (props) => {
   }, []);
 
   async function getData() {
-    getLinkPreview(props.url).then((data) => setLinkData(data));
+    getLinkPreview(props.url)
+      .then((data) => setLinkData(data))
+      .then(() => setHadLoaded(true));
   }
 
   return (
@@ -40,28 +43,45 @@ const LinkPreview = (props) => {
           imageStyle={{
             borderTopLeftRadius: 8,
             borderBottomLeftRadius: 8,
+            resizeMode: "cover",
           }}
           source={{
-            uri: linkData.hasOwnProperty("images") ? linkData.images[0] : " ",
+            uri: linkData.hasOwnProperty("images") ? linkData.images[0] : "",
           }}
         >
           <View
             style={{
               flex: 1,
-              alignItems: "flex-end",
+              width: 100,
               justifyContent: "flex-end",
             }}
           >
-            <MaterialCommunityIcons
-              name="link-variant"
-              size={100}
-              color="rgba(255, 255, 255, 0.1)"
-            />
+            <View style={styles.linkPreviewText}>
+              <View style={{ flex: 1 }}>
+                {hasLoaded ? (
+                  <Text numberOfLines={1} style={styles.smallLinkText}>
+                    {linkData.hasOwnProperty("url")
+                      ? linkData.url.replace(/^.*:\/\//i, "")
+                      : " "}
+                  </Text>
+                ) : (
+                  <Text numberOfLines={1} style={styles.smallLinkText}>
+                    .............................................
+                  </Text>
+                )}
+              </View>
+              <MaterialCommunityIcons
+                style={{ paddingRight: 2 }}
+                name="link-variant"
+                size={10}
+                color="white"
+              />
+            </View>
           </View>
         </ImageBackground>
       </View>
       <View style={styles.bodyPreview}>
-        <View style={styles.titleArea}>
+        <View>
           <Text
             style={[styles.title, { color: colors.text }]}
             numberOfLines={1}
@@ -87,8 +107,7 @@ const styles = StyleSheet.create({
     height: 100,
   },
   imagePreview: {},
-  bodyPreview: { justifyContent: "space-evenly", flexShrink: 1, padding: 8 },
-  titleArea: { flexShrink: 1 },
+  bodyPreview: { flexShrink: 1, padding: 8 },
   title: { fontWeight: "600", fontSize: 16 },
   descriptionArea: {},
   description: { color: "#949494" },
@@ -97,5 +116,20 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     flexDirection: "row",
     borderWidth: 1,
+  },
+  linkPreviewText: {
+    flexDirection: "row",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    width: 100,
+    alignItems: "center",
+    justifyContent: "center",
+    borderBottomLeftRadius: 8,
+  },
+  smallLinkText: {
+    color: "white",
+    paddingVertical: 2,
+    paddingLeft: 4,
+    fontWeight: "600",
+    fontSize: 9,
   },
 });
