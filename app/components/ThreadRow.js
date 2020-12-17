@@ -30,7 +30,9 @@ function ThreadRow({ item, onPress }) {
           <Text style={[styles.middleText, { color: colors.text }]}>
             {item.title}
           </Text>
-          <SmallLinkPreview url="https://www.bbc.com/sport/football/55321152" />
+          {item.title == "Not only did we score but" ? (
+            <SmallLinkPreview url="https://www.bbc.com/sport/football/55321152" />
+          ) : null}
         </View>
         <View style={styles.bottomArea}>
           <MaterialCommunityIcons name="comment" size={18} color="#949494" />

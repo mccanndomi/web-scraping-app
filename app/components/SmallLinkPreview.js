@@ -1,4 +1,4 @@
-import React, { useState } from "react"; //Baskerville, Bodoni 72, Didot, Times New Roman
+import React, { useState, useEffect } from "react"; //Baskerville, Bodoni 72, Didot, Times New Roman
 import {
   StyleSheet,
   View,
@@ -13,10 +13,16 @@ import * as Linking from "expo-linking";
 
 const SmallLinkPreview = (props) => {
   const { dark, colors } = useTheme();
-  const [linkData, setLinkData] = useState({
-    images: [],
-  });
-  getLinkPreview(props.url).then((data) => setLinkData(data));
+  const [linkData, setLinkData] = useState({});
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  async function getData() {
+    getLinkPreview(props.url).then((data) => setLinkData(data));
+  }
+
   return (
     <TouchableOpacity
       onPress={() => Linking.openURL(linkData.url)}
@@ -34,7 +40,7 @@ const SmallLinkPreview = (props) => {
             borderRadius: 8,
           }}
           source={{
-            uri: linkData.images[0],
+            uri: linkData.hasOwnProperty("images") ? linkData.images[0] : " ",
           }}
         >
           <View
@@ -45,21 +51,27 @@ const SmallLinkPreview = (props) => {
             }}
           >
             <View style={styles.linkPreviewText}>
-              <Text
-                numberOfLines={1}
-                style={{
-                  color: "white",
-                  paddingVertical: 2,
-                  paddingLeft: 4,
-                  fontWeight: "600",
-                }}
-              >
-                {linkData.url.replace(/^.*:\/\//i, "")}
-              </Text>
+              <View style={{ flex: 1 }}>
+                <Text
+                  numberOfLines={1}
+                  style={{
+                    color: "white",
+                    paddingVertical: 2,
+                    paddingLeft: 4,
+                    fontWeight: "600",
+                    fontSize: 9,
+                  }}
+                >
+                  {linkData.hasOwnProperty("url")
+                    ? linkData.url.replace(/^.*:\/\//i, "")
+                    : " "}
+                </Text>
+              </View>
               <MaterialCommunityIcons
+                style={{ paddingRight: 2 }}
                 name="link-variant"
-                size={20}
-                color="red"
+                size={10}
+                color="white"
               />
             </View>
           </View>
@@ -76,7 +88,6 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
   },
-  imagePreview: {},
   container: {
     width: 100,
     height: 100,
@@ -89,8 +100,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "rgba(0, 0, 0, 0.7)",
     width: 100,
-    alignItems: "flex-end",
-    justifyContent: "flex-end",
+    alignItems: "center",
+    justifyContent: "center",
     borderBottomRightRadius: 8,
     borderBottomLeftRadius: 8,
   },

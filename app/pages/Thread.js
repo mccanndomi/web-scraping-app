@@ -91,7 +91,9 @@ export default function Thread({ route, navigation }) {
             >
               {thread.description.replace(/(\r\n|\n|\r)/gm, " ")}
             </Text>
-            <LinkPreview url="https://www.bbc.com/sport/football/55321152" />
+            {thread.title == "Not only did we score but" ? (
+              <LinkPreview url="https://www.bbc.com/sport/football/55321152" />
+            ) : null}
           </View>
           <View style={styles.bottomArea}>
             <MaterialCommunityIcons name="comment" size={18} color="#949494" />

@@ -2,11 +2,12 @@
   "name": "app",
   "displayName": "app",
   "expo": {
+    "splash": {
+      "image": "./assets/splash.png"
+    },
     "name": "app",
     "slug": "app",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"]
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react"; //Baskerville, Bodoni 72, Didot, Times New Roman
+import React, { useState, useEffect } from "react"; //Baskerville, Bodoni 72, Didot, Times New Roman
 import {
   StyleSheet,
   View,
@@ -13,10 +13,16 @@ import * as Linking from "expo-linking";
 
 const LinkPreview = (props) => {
   const { dark, colors } = useTheme();
-  const [linkData, setLinkData] = useState({
-    images: [],
-  });
-  getLinkPreview(props.url).then((data) => setLinkData(data));
+  const [linkData, setLinkData] = useState({});
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  async function getData() {
+    getLinkPreview(props.url).then((data) => setLinkData(data));
+  }
+
   return (
     <TouchableOpacity
       onPress={() => Linking.openURL(linkData.url)}
@@ -36,7 +42,7 @@ const LinkPreview = (props) => {
             borderBottomLeftRadius: 8,
           }}
           source={{
-            uri: linkData.images[0],
+            uri: linkData.hasOwnProperty("images") ? linkData.images[0] : " ",
           }}
         >
           <View

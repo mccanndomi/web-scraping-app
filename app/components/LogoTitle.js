@@ -1,10 +1,24 @@
 import React from "react"; //Baskerville, Bodoni 72, Didot, Times New Roman
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, ImageBackground } from "react-native";
+import { useTheme } from "@react-navigation/native";
 
 const LogoTitle = (props) => {
+  const { dark } = useTheme();
+
   return (
     <View>
-      <Text style={[styles.title, { color: props.color }]}>Optimum</Text>
+      <ImageBackground
+        style={styles.image}
+        imageStyle={{
+          borderRadius: 8,
+          resizeMode: "contain",
+        }}
+        source={
+          !dark
+            ? require("../assets/title-dark.png")
+            : require("../assets/title-light.png")
+        }
+      />
     </View>
   );
 };
@@ -12,8 +26,8 @@ const LogoTitle = (props) => {
 export { LogoTitle };
 
 const styles = StyleSheet.create({
-  title: {
-    fontFamily: "Baskerville",
-    fontSize: 30,
+  image: {
+    width: 140,
+    height: 100,
   },
 });
