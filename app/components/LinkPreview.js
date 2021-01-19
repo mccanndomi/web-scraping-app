@@ -9,7 +9,7 @@ import {
 import { getLinkPreview } from "link-preview-js";
 import { useTheme } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import LinearGradient from "react-native-linear-gradient";
+import { LinearGradient } from "expo-linear-gradient";
 import { createShimmerPlaceholder } from "react-native-shimmer-placeholder";
 import * as Linking from "expo-linking";
 
