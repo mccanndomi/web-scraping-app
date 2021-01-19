@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Avatar } from "../components/Avatar";
 import { firebase } from "../services/Firebase";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 
 const Comment = (props) => {
@@ -78,8 +79,39 @@ const Comment = (props) => {
             </View>
           </View>
         </TouchableOpacity>
-        <View styles={styles.bottomRow}>
-          {/* <MaterialCommunityIcons name="reply" size={18} color="#949494" /> */}
+        <View style={styles.bottomRow}>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "flex-end",
+            }}
+          >
+            <TouchableOpacity onPress={() => alert(comment.id)}>
+              <MaterialCommunityIcons
+                style={{ paddingRight: 10 }}
+                name="dots-horizontal"
+                size={26}
+                color="#949494"
+              />
+            </TouchableOpacity>
+          </View>
+          <MaterialCommunityIcons
+            style={{ paddingLeft: 20 }}
+            name="reply"
+            size={26}
+            color="#949494"
+          />
+          <Text
+            style={{
+              fontWeight: "600",
+              paddingHorizontal: 6,
+              color: "#949494",
+            }}
+          >
+            Reply
+          </Text>
         </View>
         {comment.hasOwnProperty("childIDs") && comment.childIDs.length != 0 ? (
           isHidden ? (
@@ -179,7 +211,11 @@ function getCommentBody(body) {
 
 const styles = StyleSheet.create({
   bottomRow: {
-    //flexDirection: "row",
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    marginRight: 20,
   },
   hiddenView: {},
   leftTop: {
@@ -194,7 +230,6 @@ const styles = StyleSheet.create({
     flex: 1,
     borderLeftWidth: 1,
     marginTop: 10,
-    paddingRight: 10,
     paddingTop: 8,
     flexDirection: "column",
   },
@@ -206,6 +241,7 @@ const styles = StyleSheet.create({
   middleArea: {
     flexDirection: "column",
     paddingLeft: 45,
+    paddingRight: 18,
     paddingBottom: 12,
   },
   userText: {

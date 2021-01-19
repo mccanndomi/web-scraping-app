@@ -7,6 +7,7 @@ import {
   View,
   Platform,
   StatusBar,
+  TouchableOpacity,
 } from "react-native";
 import { Avatar } from "../components/Avatar";
 import { Comment } from "../components/Comment";
@@ -56,7 +57,10 @@ export default function Thread({ route, navigation }) {
       }}
     >
       <SafeAreaView style={{ backgroundColor: colors.card }} />
-      <ScrollView>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+      >
         <View
           style={[
             styles.threadBody,
@@ -104,6 +108,13 @@ export default function Thread({ route, navigation }) {
               color="#949494"
             />
             <Text style={styles.bottomText}>{thread.date}</Text>
+            <TouchableOpacity onPress={() => alert(thread.id)}>
+              <MaterialCommunityIcons
+                name="dots-horizontal"
+                size={26}
+                color="#949494"
+              />
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.threadComments}>
@@ -120,7 +131,8 @@ export default function Thread({ route, navigation }) {
 
 const styles = StyleSheet.create({
   threadBody: {
-    padding: 10,
+    paddingTop: 10,
+    paddingHorizontal: 10,
   },
   titleText: {
     fontWeight: "600",

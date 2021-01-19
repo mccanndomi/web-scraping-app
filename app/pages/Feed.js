@@ -19,9 +19,37 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 function Feed({ navigation }) {
   const [posts, setPosts] = useState([]);
+  const [hasLoaded, setHasLoaded] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [filterSelected, setFilterSelected] = useState("None");
   const { dark, colors } = useTheme();
+
+  const fakeData = [
+    {
+      childIDs: ["16081441237461"],
+      comments: 2,
+      date: "December 16 2020",
+      description:
+        "Apparely we're playing Sheffield utd in cup. And as someone said earlier, rubbish about Iwobi and Richarlison",
+      id: "16081412347333",
+      parrentID: "",
+      time: "7:35 pm",
+      title: "Commeators!!! Useless",
+      user: "Bluerose* ",
+    },
+    {
+      childIDs: ["16085643147461"],
+      comments: 2,
+      date: "December 16 2020",
+      description:
+        "Apparely we're playing Sheffield utd in cup. And as someone said earlier, rubbish about Iwobi and Richarlison",
+      id: "16081123333",
+      parrentID: "",
+      time: "7:35 pm",
+      title: "Commeators!!! Useless",
+      user: "Bluerose* ",
+    },
+  ];
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -41,8 +69,8 @@ function Feed({ navigation }) {
   }, [navigation, colors]);
 
   useEffect(() => {
-    getAllPosts();
-  }, []);
+    getAllPosts().then(() => setHasLoaded(true));
+  }, [setHasLoaded]);
 
   async function getAllPosts() {
     //fetches all posts from db
@@ -133,11 +161,19 @@ function Feed({ navigation }) {
           </View>
         </View>
       </Modal>
-      <FlatList
-        data={getParentPosts(posts)}
-        renderItem={renderItem}
-        key={(item) => item.id}
-      />
+      {hasLoaded ? (
+        <FlatList
+          data={getParentPosts(posts)}
+          renderItem={renderItem}
+          key={(item) => item.id}
+        />
+      ) : (
+        <FlatList
+          data={fakeData}
+          renderItem={renderItem}
+          key={(item) => item.id}
+        />
+      )}
     </View>
   );
 
