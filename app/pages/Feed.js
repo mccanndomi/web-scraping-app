@@ -11,6 +11,7 @@ import {
   Text,
 } from "react-native";
 import ThreadRow from "../components/ThreadRow";
+import FakeThreadRow from "../components/FakeThreadRow";
 import { FilterButton } from "../components/FilterButton";
 import { firebase } from "../services/Firebase";
 import { useTheme } from "@react-navigation/native";
@@ -100,6 +101,9 @@ function Feed({ navigation }) {
   }
 
   const renderItem = ({ item }) => <ThreadRow item={item}></ThreadRow>;
+  const renderFakeItem = ({ item }) => (
+    <FakeThreadRow item={item}></FakeThreadRow>
+  );
 
   return (
     <View style={styles.container}>
@@ -170,7 +174,7 @@ function Feed({ navigation }) {
       ) : (
         <FlatList
           data={fakeData}
-          renderItem={renderItem}
+          renderItem={renderFakeItem}
           key={(item) => item.id}
         />
       )}

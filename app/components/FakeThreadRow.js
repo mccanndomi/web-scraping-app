@@ -1,10 +1,13 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { Avatar } from "./Avatar";
-import { SmallLinkPreview } from "./SmallLinkPreview";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "@react-navigation/native";
+import { LinearGradient } from "expo-linear-gradient";
+import { createShimmerPlaceholder } from "react-native-shimmer-placeholder";
+
+const ShimmerPlaceHolder = createShimmerPlaceholder(LinearGradient);
 
 function ThreadRow({ item, onPress }) {
   const navigation = useNavigation();
@@ -23,22 +26,25 @@ function ThreadRow({ item, onPress }) {
           <Text style={styles.userText}>Posted by tim61 - 10:28pm</Text>
         </View>
         <View style={styles.middleArea}>
-          <Text style={[styles.middleText, { color: colors.text }]}>
-            Sheffield United
-          </Text>
+          <View style={{ padding: 10 }}>
+            <ShimmerPlaceHolder
+              height={24}
+              width={160 + Math.floor(Math.random() * Math.floor(180))}
+            />
+          </View>
           {/* {item.hasOwnProperty("link") ? (
             <SmallLinkPreview url={item.link} />
           ) : null} */}
         </View>
         <View style={styles.bottomArea}>
-          <MaterialCommunityIcons name="comment" size={18} color="#949494" />
-          <Text style={styles.bottomText}>8</Text>
-          <MaterialCommunityIcons
-            name="calendar-blank"
-            size={18}
-            color="#949494"
+          <View style={{ paddingRight: 25 }}>
+            <ShimmerPlaceHolder height={17} width={20} />
+          </View>
+
+          <ShimmerPlaceHolder
+            height={17}
+            width={100 + Math.floor(Math.random() * Math.floor(40))}
           />
-          <Text style={styles.bottomText}>December 17 2020</Text>
         </View>
       </View>
     </TouchableOpacity>

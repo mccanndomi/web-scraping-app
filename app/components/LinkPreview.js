@@ -11,10 +11,9 @@ import { useTheme } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { createShimmerPlaceholder } from "react-native-shimmer-placeholder";
-import * as Linking from "expo-linking";
+import Linking from "expo-linking";
 
 const ShimmerPlaceHolder = createShimmerPlaceholder(LinearGradient);
-
 const LinkPreview = (props) => {
   const { dark, colors } = useTheme();
   const [hasLoaded, setHasLoaded] = useState(false);
