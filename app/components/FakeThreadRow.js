@@ -22,8 +22,17 @@ function ThreadRow({ item, onPress }) {
         ]}
       >
         <View style={styles.topArea}>
-          <Avatar avatarName={"tim61"} size={26}></Avatar>
-          <Text style={styles.userText}>Posted by tim61 - 10:28pm</Text>
+          <ShimmerPlaceHolder
+            style={{ borderRadius: 9999 }}
+            height={26}
+            width={26}
+          />
+          <View style={{ paddingTop: 10, paddingBottom: 10, paddingLeft: 5 }}>
+            <ShimmerPlaceHolder
+              height={17}
+              width={100 + Math.floor(Math.random() * Math.floor(60))}
+            />
+          </View>
         </View>
         <View style={styles.middleArea}>
           <View style={{ padding: 10 }}>
