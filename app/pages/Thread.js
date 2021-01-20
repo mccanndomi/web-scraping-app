@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { Avatar } from "../components/Avatar";
 import { Comment } from "../components/Comment";
+import { Tag } from "../components/Tag";
 import { LinkPreview } from "../components/LinkPreview";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
@@ -73,6 +74,8 @@ export default function Thread({ route, navigation }) {
             <Avatar avatarName={thread.user} size={34}></Avatar>
             <Text style={styles.userText}>Posted by {thread.user}</Text>
             <Text style={styles.timeText}>- {thread.time}</Text>
+            <View style={{ flex: 1 }} />
+            <Tag source={getRandomSource()} />
           </View>
           <View style={styles.middleArea}>
             <Text
@@ -127,6 +130,21 @@ export default function Thread({ route, navigation }) {
       </ScrollView>
     </View>
   );
+}
+
+/**
+ * Temp method to give a random souce. For the tag functionality
+ */
+function getRandomSource() {
+  var ran = Math.floor(Math.random() * Math.floor(3));
+
+  if (ran == 0) {
+    return "TPF";
+  } else if (ran == 1) {
+    return "reddit";
+  } else {
+    return "Optimum";
+  }
 }
 
 const styles = StyleSheet.create({

@@ -27,28 +27,25 @@ function Feed({ navigation }) {
 
   const fakeData = [
     {
-      childIDs: ["16081441237461"],
-      comments: 2,
-      date: "December 16 2020",
-      description:
-        "Apparely we're playing Sheffield utd in cup. And as someone said earlier, rubbish about Iwobi and Richarlison",
-      id: "16081412347333",
-      parrentID: "",
-      time: "7:35 pm",
-      title: "Commeators!!! Useless",
-      user: "Bluerose* ",
+      id: "16013281412347333",
     },
     {
-      childIDs: ["16085643147461"],
-      comments: 2,
-      date: "December 16 2020",
-      description:
-        "Apparely we're playing Sheffield utd in cup. And as someone said earlier, rubbish about Iwobi and Richarlison",
-      id: "16081123333",
-      parrentID: "",
-      time: "7:35 pm",
-      title: "Commeators!!! Useless",
-      user: "Bluerose* ",
+      id: "16081356412347333",
+    },
+    {
+      id: "16081417562347333",
+    },
+    {
+      id: "16087981412347333",
+    },
+    {
+      id: "16081412347312333",
+    },
+    {
+      id: "16081401112347333",
+    },
+    {
+      id: "16081414112347333",
     },
   ];
 
@@ -70,7 +67,7 @@ function Feed({ navigation }) {
   }, [navigation, colors]);
 
   useEffect(() => {
-    getAllPosts().then(() => setHasLoaded(true));
+    getAllPosts();
   }, [setHasLoaded]);
 
   async function getAllPosts() {
@@ -92,6 +89,7 @@ function Feed({ navigation }) {
                   : -1
               )
             );
+            setHasLoaded(true);
           }
         },
         function (errorObject) {

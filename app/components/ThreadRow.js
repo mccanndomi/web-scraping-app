@@ -2,9 +2,12 @@ import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { Avatar } from "./Avatar";
 import { SmallLinkPreview } from "./SmallLinkPreview";
+import { Tag } from "./Tag";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "@react-navigation/native";
+
+var random = Math.floor(Math.random() * Math.floor(3));
 
 function ThreadRow({ item, onPress }) {
   const navigation = useNavigation();
@@ -25,6 +28,8 @@ function ThreadRow({ item, onPress }) {
           <Text style={styles.userText}>
             Posted by {item.user} - {item.time}
           </Text>
+          <View style={{ flex: 1 }} />
+          <Tag source={getRandomSource()} />
         </View>
         <View style={styles.middleArea}>
           <Text style={[styles.middleText, { color: colors.text }]}>
@@ -99,5 +104,20 @@ const styles = StyleSheet.create({
     paddingBottom: 6,
   },
 });
+
+/**
+ * Temp method to give a random souce. For the tag functionality
+ */
+function getRandomSource() {
+  var ran = Math.floor(Math.random() * Math.floor(3));
+
+  if (ran == 0) {
+    return "TPF";
+  } else if (ran == 1) {
+    return "reddit";
+  } else {
+    return "Optimum";
+  }
+}
 
 export default ThreadRow;

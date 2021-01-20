@@ -125,6 +125,7 @@ const Comment = (props) => {
       </View>
     </View>
   ) : (
+    //========== HIDDEN VIEW ==========
     <View
       style={[
         styles.container,
@@ -145,6 +146,9 @@ const Comment = (props) => {
             <View style={{ paddingBottom: 8 }}>
               <Avatar avatarName={comment.user} size={28}></Avatar>
             </View>
+            <Text style={[styles.userText, { paddingBottom: 8 }]}>
+              {" " + comment.user} -
+            </Text>
             {getHiddenCommentTitle(
               comment.title.replace(/(\r\n|\n|\r)/gm, ""),
               comment.description.replace(/(\r\n|\n|\r)/gm, "")
@@ -179,7 +183,7 @@ function getHiddenCommentTitle(title, body) {
         numberOfLines={1}
         style={[
           styles.title,
-          { color: colors.text, paddingLeft: 8, marginRight: 30 },
+          { color: colors.text, paddingLeft: 8, marginRight: 70 },
         ]}
       >
         {body}
@@ -191,7 +195,7 @@ function getHiddenCommentTitle(title, body) {
         numberOfLines={1}
         style={[
           styles.title,
-          { color: colors.text, paddingLeft: 8, marginRight: 30 },
+          { color: colors.text, paddingLeft: 8, marginRight: 70 },
         ]}
       >
         {title}
@@ -255,6 +259,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "700",
-    paddingBottom: 2,
+    paddingBottom: 8,
   },
 });
