@@ -6,6 +6,7 @@ import { Tag } from "./Tag";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "@react-navigation/native";
+import { MediaImage } from "./MediaImage";
 
 var random = Math.floor(Math.random() * Math.floor(3));
 
@@ -29,16 +30,23 @@ function ThreadRow({ item, onPress }) {
             Posted by {item.user} - {item.time}
           </Text>
           <View style={{ flex: 1 }} />
-          <Tag source={getRandomSource()} />
+          <Tag source={item.source} />
         </View>
         <View style={styles.middleArea}>
           <Text style={[styles.middleText, { color: colors.text }]}>
             {item.title}
           </Text>
           {item.hasOwnProperty("link") ? (
-            <SmallLinkPreview url={item.link} />
+            item.link != "" && !item.link.includes("redd.it") ? (
+              <SmallLinkPreview url={item.link} />
+            ) : null
           ) : null}
         </View>
+        {item.hasOwnProperty("media") ? (
+          item.media ? (
+            <MediaImage url={item.link} />
+          ) : null
+        ) : null}
         <View style={styles.bottomArea}>
           <MaterialCommunityIcons name="comment" size={18} color="#949494" />
           <Text style={styles.bottomText}>{item.comments}</Text>

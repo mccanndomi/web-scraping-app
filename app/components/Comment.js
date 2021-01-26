@@ -183,7 +183,7 @@ function getHiddenCommentTitle(title, body) {
         numberOfLines={1}
         style={[
           styles.title,
-          { color: colors.text, paddingLeft: 8, marginRight: 70 },
+          { color: colors.text, paddingLeft: 8, marginRight: 130 },
         ]}
       >
         {body}
@@ -195,7 +195,7 @@ function getHiddenCommentTitle(title, body) {
         numberOfLines={1}
         style={[
           styles.title,
-          { color: colors.text, paddingLeft: 8, marginRight: 70 },
+          { color: colors.text, paddingLeft: 8, marginRight: 130 },
         ]}
       >
         {title}

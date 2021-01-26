@@ -75,7 +75,7 @@ export default function Thread({ route, navigation }) {
             <Text style={styles.userText}>Posted by {thread.user}</Text>
             <Text style={styles.timeText}>- {thread.time}</Text>
             <View style={{ flex: 1 }} />
-            <Tag source={getRandomSource()} />
+            <Tag source={thread.source} />
           </View>
           <View style={styles.middleArea}>
             <Text
@@ -99,7 +99,9 @@ export default function Thread({ route, navigation }) {
               {thread.description.replace(/(\r\n|\n|\r)/gm, " ")}
             </Text>
             {thread.hasOwnProperty("link") ? (
-              <LinkPreview url={thread.link} />
+              thread.link != "" && !thread.link.includes("redd.it") ? (
+                <LinkPreview url={thread.link} />
+              ) : null
             ) : null}
           </View>
           <View style={styles.bottomArea}>
