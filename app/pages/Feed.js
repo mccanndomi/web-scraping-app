@@ -233,17 +233,17 @@ function Feed({ navigation }) {
 
 const testSort = (objA, objB) => {
   if (!objA.hasOwnProperty("link") && objB.hasOwnProperty("link")) {
-    return -1;
+    return 1;
   } else if (objA.hasOwnProperty("link") && !objB.hasOwnProperty("link")) {
-    return 1;
-  } else if (objA.link === undefined && objB.link !== undefined) {
     return -1;
-  } else if (objA.link !== undefined && objB.link === undefined) {
+  } else if (objA.link === undefined && objB.link !== undefined) {
     return 1;
+  } else if (objA.link !== undefined && objB.link === undefined) {
+    return -1;
   } else if (objA.link === undefined && objB.link === undefined) {
     return 0;
   } else {
-    return objA.link.length - objB.link.length;
+    return objB.link.length - objA.link.length;
   }
 };
 

@@ -12,6 +12,7 @@ import {
 import { Avatar } from "../components/Avatar";
 import { Comment } from "../components/Comment";
 import { Tag } from "../components/Tag";
+import { MediaImage } from "../components/MediaImage";
 import { LinkPreview } from "../components/LinkPreview";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ScrollView } from "react-native-gesture-handler";
@@ -104,6 +105,13 @@ export default function Thread({ route, navigation }) {
               ) : null
             ) : null}
           </View>
+          {thread.hasOwnProperty("media") ? (
+            thread.media ? (
+              !thread.link.includes("v.redd") ? (
+                <MediaImage url={thread.link} />
+              ) : null
+            ) : null
+          ) : null}
           <View style={styles.bottomArea}>
             <MaterialCommunityIcons name="comment" size={18} color="#949494" />
             <Text style={styles.bottomText}>{thread.comments}</Text>

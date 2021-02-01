@@ -24,7 +24,6 @@ function ThreadRow({ item, onPress }) {
           { backgroundColor: colors.card, borderColor: colors.card },
         ]}
       >
-        <Text>{"link: " + item.link}</Text>
         <View style={styles.topArea}>
           <Avatar avatarName={item.user} size={26}></Avatar>
           <Text style={styles.userText}>
