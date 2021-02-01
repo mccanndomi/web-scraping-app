@@ -222,11 +222,30 @@ function Feed({ navigation }) {
         break;
       case "Contains Link":
         setFilterSelected("Contains Link");
-        setPosts(currentPosts.sort((a, b) => (a.link > b.link ? 1 : -1)));
+
+        setPosts(currentPosts.sort(testSort));
+
+        //setPosts(currentPosts.sort((a, b) => (a.link > b.link ? 1 : -1)));
         break;
     }
   }
 }
+
+const testSort = (objA, objB) => {
+  if (!objA.hasOwnProperty("link") && objB.hasOwnProperty("link")) {
+    return -1;
+  } else if (objA.hasOwnProperty("link") && !objB.hasOwnProperty("link")) {
+    return 1;
+  } else if (objA.link === undefined && objB.link !== undefined) {
+    return -1;
+  } else if (objA.link !== undefined && objB.link === undefined) {
+    return 1;
+  } else if (objA.link === undefined && objB.link === undefined) {
+    return 0;
+  } else {
+    return objA.link.length - objB.link.length;
+  }
+};
 
 const styles = StyleSheet.create({
   container: {

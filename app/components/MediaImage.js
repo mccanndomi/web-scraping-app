@@ -1,26 +1,15 @@
-import React, { useState } from "react";
-import { StyleSheet, View, Text, Image, Dimensions } from "react-native";
+import React from "react";
+import { View } from "react-native";
+import FullWidthImage from "react-native-fullwidth-image";
 
 const MediaImage = (props) => {
   return (
-    <View
-      style={{
-        flex: 1,
-        height: 400,
-        marginBottom: 10,
-      }}
-    >
-      <Image
-        resizeMode="contain"
-        style={{ flex: 1, width: null, height: null }}
-        source={{
-          uri: props.url,
-        }}
-      />
-    </View>
+    //<View />
+    <FullWidthImage
+      style={{ flex: 1, marginBottom: 10, borderRadius: 4 }}
+      source={{ uri: props.url }}
+    />
   );
 };
 
 export { MediaImage };
-
-const styles = StyleSheet.create({});

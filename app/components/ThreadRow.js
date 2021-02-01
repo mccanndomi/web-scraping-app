@@ -24,6 +24,7 @@ function ThreadRow({ item, onPress }) {
           { backgroundColor: colors.card, borderColor: colors.card },
         ]}
       >
+        <Text>{"link: " + item.link}</Text>
         <View style={styles.topArea}>
           <Avatar avatarName={item.user} size={26}></Avatar>
           <Text style={styles.userText}>
@@ -44,7 +45,9 @@ function ThreadRow({ item, onPress }) {
         </View>
         {item.hasOwnProperty("media") ? (
           item.media ? (
-            <MediaImage url={item.link} />
+            !item.link.includes("v.redd") ? (
+              <MediaImage url={item.link} />
+            ) : null
           ) : null
         ) : null}
         <View style={styles.bottomArea}>
