@@ -13,6 +13,7 @@ import {
 import ThreadRow from "../components/ThreadRow";
 import FakeThreadRow from "../components/FakeThreadRow";
 import { FilterButton } from "../components/FilterButton";
+import { SourceButton } from "../components/SourceButton";
 import { firebase } from "../services/Firebase";
 import { useTheme } from "@react-navigation/native";
 import { PreferencesContext } from "../services/PreferencesContext";
@@ -160,6 +161,20 @@ function Feed({ navigation }) {
                 isSelected={filterSelected == "Contains Link" ? true : false}
               />
             </TouchableOpacity>
+            <Text style={[styles.titleText, { color: colors.text }]}>
+              FILTER
+            </Text>
+            <View
+              style={{
+                borderBottomColor: "#949494",
+                borderBottomWidth: 1,
+                marginHorizontal: 5,
+                marginBottom: 10,
+              }}
+            />
+            <SourceButton title="Reddit" />
+            <SourceButton title="The Peoples Forum" />
+            <SourceButton title="Optimum" />
           </View>
         </View>
       </Modal>
